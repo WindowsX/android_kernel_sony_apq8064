@@ -245,8 +245,8 @@ CONFIG_SHELL := $(shell if [ -x "$$BASH" ]; then echo $$BASH; \
 
 HOSTCC       = gcc
 HOSTCXX      = g++
-HOSTCFLAGS   = -Wall -Wmissing-prototypes -Wstrict-prototypes -O3 -fomit-frame-pointer -pipe -Wl,--hash-style=gnu -fno-tree-vectorize -fno-inline-functions -fno-unswitch-loops
-HOSTCXXFLAGS = -O3 -pipe -Wl,--hash-style=gnu -fno-tree-vectorize -fno-inline-functions -fno-unswitch-loops
+HOSTCFLAGS   = -Wall -Wmissing-prototypes -Wstrict-prototypes -O3 -fomit-frame-pointer -pipe -Wl,--hash-style=gnu -fno-tree-vectorize -fno-inline-functions -fno-unswitch-loops -fstrict-aliasing -Wstrict-aliasing=2 -Werror=strict-aliasing
+HOSTCXXFLAGS = -O3 -pipe -Wl,--hash-style=gnu -fno-tree-vectorize -fno-inline-functions -fno-unswitch-loops -fstrict-aliasing -Wstrict-aliasing=2 -Werror=strict-aliasing
 
 # Decide whether to build built-in, modular, or both.
 # Normally, just do built-in.
@@ -365,7 +365,7 @@ LINUXINCLUDE    := -I$(srctree)/arch/$(hdr-arch)/include \
 KBUILD_CPPFLAGS := -D__KERNEL__
 
 KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
-		   -fno-strict-aliasing -fno-common \
+		   -fno-common \
 		   -Werror-implicit-function-declaration \
 		   -Wno-format-security \
 		   -fno-delete-null-pointer-checks
@@ -561,7 +561,7 @@ all: vmlinux
 ifdef CONFIG_CC_OPTIMIZE_FOR_SIZE
 KBUILD_CFLAGS	+= -Os
 else
-KBUILD_CFLAGS	+= -O3 -pipe -Wl,--hash-style=gnu -fno-tree-vectorize -fno-inline-functions -fno-unswitch-loops
+KBUILD_CFLAGS	+= -O3 -pipe -Wl,--hash-style=gnu -fno-tree-vectorize -fno-inline-functions -fno-unswitch-loops -fstrict-aliasing -Wstrict-aliasing=2 -Werror=strict-aliasing
 endif
 
 include $(srctree)/arch/$(SRCARCH)/Makefile
