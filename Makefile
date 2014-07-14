@@ -245,8 +245,8 @@ CONFIG_SHELL := $(shell if [ -x "$$BASH" ]; then echo $$BASH; \
 
 HOSTCC       = gcc
 HOSTCXX      = g++
-HOSTCFLAGS   = -Wall -Wmissing-prototypes -Wstrict-prototypes -O3 -fomit-frame-pointer -pipe -Wl,--hash-style=gnu -fno-tree-vectorize -fno-inline-functions -fno-unswitch-loops -fstrict-aliasing -Wstrict-aliasing=2 -Werror=strict-aliasing
-HOSTCXXFLAGS = -O3 -pipe -Wl,--hash-style=gnu -fno-tree-vectorize -fno-inline-functions -fno-unswitch-loops -fstrict-aliasing -Wstrict-aliasing=2 -Werror=strict-aliasing
+HOSTCFLAGS   = -Wall -Wmissing-prototypes -Wstrict-prototypes -O3 -fomit-frame-pointer -pipe -Wl,--hash-style=gnu -fno-tree-vectorize -fno-inline-functions -fno-unswitch-loops -fstrict-aliasing -Wstrict-aliasing=2
+HOSTCXXFLAGS = -O3 -pipe -Wl,--hash-style=gnu -fno-tree-vectorize -fno-inline-functions -fno-unswitch-loops -fstrict-aliasing -Wstrict-aliasing=2
 
 # Decide whether to build built-in, modular, or both.
 # Normally, just do built-in.
@@ -561,7 +561,7 @@ all: vmlinux
 ifdef CONFIG_CC_OPTIMIZE_FOR_SIZE
 KBUILD_CFLAGS	+= -Os
 else
-KBUILD_CFLAGS	+= -O3 -pipe -Wl,--hash-style=gnu -fno-tree-vectorize -fno-inline-functions -fno-unswitch-loops -fstrict-aliasing -Wstrict-aliasing=2 -Werror=strict-aliasing
+KBUILD_CFLAGS	+= -O3 -pipe -Wl,--hash-style=gnu -fno-tree-vectorize -fno-inline-functions -fno-unswitch-loops -fstrict-aliasing -Wstrict-aliasing=2
 endif
 
 include $(srctree)/arch/$(SRCARCH)/Makefile
